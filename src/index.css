@@ -1,0 +1,22 @@
+:root {
+  --color-bg: #fffaf7;
+  --color-primary: #e8a0b4;
+  --color-text: #3d2c2e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+}
