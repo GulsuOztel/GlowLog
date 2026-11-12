@@ -5,6 +5,14 @@ import {
   getDaysLeft,
 } from '../utils/dateHelpers'
 
+import {
+  getLastDays,
+  getStreak,
+  getAverageRating,
+  getWeekdayShort,
+  dayHasActivity,
+} from '../utils/statsHelpers'
+
 const periods = [
   { id: 'morning', title: '🌅 Sabah Rutini' },
   { id: 'evening', title: '🌙 Akşam Rutini' },
@@ -67,6 +75,12 @@ function TodayPage({ products, routines, logs, onLogsChange }) {
     })
     .filter((item) => item !== null && item.daysLeft <= 30)
     .sort((a, b) => a.daysLeft - b.daysLeft)
+      const last7Days = getLastDays(today, 7)
+  const streak = getStreak(logs, today)
+  const averageRating = getAverageRating(logs, last7Days)
+  const activeDaysCount = last7Days.filter((date) =>
+    dayHasActivity(logs, date)
+  ).length
 
   const pastDates = Object.keys(logs)
     .filter((date) => date !== today)
@@ -81,6 +95,42 @@ function TodayPage({ products, routines, logs, onLogsChange }) {
     <section>
       <h2>Bugün</h2>
       <p className="today-date">{formattedToday}</p>
+            <div className="stats-card">
+        <div className="stats-numbers">
+          <div className="stat">
+            <span className="stat-value">🔥 {streak}</span>
+            <span className="stat-label">gün seri</span>
+          </div>
+          <div className="stat">
+            <span className="stat-value">{activeDaysCount}/7</span>
+            <span className="stat-label">aktif gün</span>
+          </div>
+          <div className="stat">
+            <span className="stat-value">
+              {averageRating === null ? '-' : averageRating}
+            </span>
+            <span className="stat-label">ort. cilt puanı</span>
+          </div>
+        </div>
+
+        <div className="week-row">
+          {last7Days.map((date) => (
+            <div
+              key={date}
+              className={
+                date === today ? 'week-day is-today' : 'week-day'
+              }
+            >
+              <span className="week-label">{getWeekdayShort(date)}</span>
+              <span
+                className={
+                  dayHasActivity(logs, date) ? 'week-dot filled' : 'week-dot'
+                }
+              />
+            </div>
+          ))}
+        </div>
+      </div>
             {expiringProducts.length > 0 && (
         <div className="expiry-alert">
           <h3>⚠️ Süresi yaklaşan ürünler</h3>
