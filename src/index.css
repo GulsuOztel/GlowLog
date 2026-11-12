@@ -601,3 +601,163 @@ h2 {
     box-shadow: var(--shadow-soft);
   }
 }
+
+/* ===== Görev: Kartlar, formlar, boş durumlar ===== */
+
+.empty-state {
+  background-color: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: 16px;
+  padding: 24px 16px;
+  margin: 16px 0;
+  color: var(--color-muted);
+  opacity: 1;
+}
+
+.product-form {
+  border: 1px solid var(--color-border);
+}
+
+.product-form input,
+.product-form select,
+.product-form textarea,
+.routine-select,
+.journal-note {
+  border: 1px solid var(--color-border);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-form input:focus,
+.product-form select:focus,
+.product-form textarea:focus,
+.routine-select:focus,
+.journal-note:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.primary-button,
+.secondary-button {
+  min-height: 44px;
+}
+
+.primary-button:active,
+.secondary-button:active {
+  transform: scale(0.98);
+}
+
+.secondary-button {
+  font-family: inherit;
+  border-color: var(--color-border);
+  transition: background-color 0.2s ease;
+}
+
+.secondary-button:hover {
+  background-color: var(--color-primary-soft);
+}
+
+.product-card,
+.routine-card {
+  border: 1px solid var(--color-border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(120, 70, 80, 0.12);
+}
+
+.product-category {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+  font-weight: 500;
+}
+
+.product-card h3 {
+  font-size: 1.15rem;
+}
+
+.card-actions {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+}
+
+.edit-button,
+.delete-button {
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  min-height: 32px;
+}
+
+.edit-button:hover {
+  text-decoration: underline;
+}
+
+.delete-button:hover {
+  text-decoration: underline;
+}
+
+.routine-item-actions button {
+  min-width: 40px;
+  min-height: 36px;
+  font-size: 1rem;
+}
+
+.routine-item-actions button:hover:not(:disabled) {
+  background-color: var(--color-primary-soft);
+}
+
+.rating-button {
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.rating-button:hover {
+  background-color: var(--color-primary-soft);
+}
+
+.rating-button:active {
+  transform: scale(0.96);
+}
+
+.check-item {
+  min-height: 48px;
+}
+
+.nav-button:focus-visible,
+.primary-button:focus-visible,
+.secondary-button:focus-visible,
+.rating-button:focus-visible,
+.edit-button:focus-visible,
+.delete-button:focus-visible,
+.routine-item-actions button:focus-visible {
+  outline: 2px solid var(--color-primary-dark);
+  outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .app-header h1 {
+    font-size: 2rem;
+  }
+
+  .product-form,
+  .routine-card,
+  .journal-card {
+    padding: 16px;
+  }
+
+  .rating-row {
+    gap: 6px;
+  }
+}
