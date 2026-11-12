@@ -8,6 +8,10 @@ import useLocalStorage from './hooks/useLocalStorage'
 function App() {
   const [activeTab, setActiveTab] = useState('today')
   const [products, setProducts] = useLocalStorage('glowlog_products', [])
+  const [routines, setRoutines] = useLocalStorage('glowlog_routines', {
+    morning: [],
+    evening: [],
+  })
 
   function addProduct(newProduct) {
     setProducts([...products, newProduct])
@@ -23,6 +27,10 @@ function App() {
 
   function deleteProduct(productId) {
     setProducts(products.filter((product) => product.id !== productId))
+    setRoutines({
+      morning: routines.morning.filter((id) => id !== productId),
+      evening: routines.evening.filter((id) => id !== productId),
+    })
   }
 
   return (
@@ -44,7 +52,13 @@ function App() {
             onDeleteProduct={deleteProduct}
           />
         )}
-        {activeTab === 'routines' && <RoutinesPage />}
+        {activeTab === 'routines' && (
+          <RoutinesPage
+            products={products}
+            routines={routines}
+            onRoutinesChange={setRoutines}
+          />
+        )}
       </main>
     </div>
   )
