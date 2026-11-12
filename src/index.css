@@ -57,3 +57,139 @@ body {
   background-color: var(--color-primary);
   color: white;
 }
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin-bottom: 24px;
+}
+
+.product-form h3 {
+  margin: 0 0 8px;
+}
+
+.product-form label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.product-form input,
+.product-form select,
+.product-form textarea {
+  padding: 10px 12px;
+  border: 1px solid #e6d5d8;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: var(--color-bg);
+}
+
+.product-form input:focus,
+.product-form select:focus,
+.product-form textarea:focus {
+  outline: 2px solid var(--color-primary);
+  border-color: transparent;
+}
+
+.form-error {
+  color: #c0392b;
+  margin: 4px 0;
+  font-size: 0.9rem;
+}
+
+.primary-button {
+  margin-top: 8px;
+  padding: 12px;
+  border: none;
+  border-radius: 999px;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.product-card {
+  background-color: white;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.product-card h3 {
+  margin: 8px 0 4px;
+}
+
+.product-category {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background-color: #fbe6ec;
+  font-size: 0.8rem;
+}
+
+.product-brand {
+  margin: 0 0 8px;
+  opacity: 0.7;
+}
+
+.product-notes {
+  font-size: 0.9rem;
+}
+
+.delete-button {
+  border: none;
+  background: none;
+  color: #c0392b;
+  cursor: pointer;
+  padding: 0;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 32px 16px;
+  opacity: 0.7;
+}
+
+.product-expiry {
+  margin: 8px 0;
+}
+
+.product-expiry p {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.expiry-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.expiry-badge.ok {
+  background-color: #e3f4e6;
+  color: #2e7d46;
+}
+
+.expiry-badge.soon {
+  background-color: #fff1d6;
+  color: #a86a00;
+}
+
+.expiry-badge.expired {
+  background-color: #fbdcd8;
+  color: #c0392b;
+}

@@ -9,16 +9,12 @@ function App() {
   const [activeTab, setActiveTab] = useState('today')
   const [products, setProducts] = useLocalStorage('glowlog_products', [])
 
-  // GEÇİCİ TEST: sonraki görevde silinecek
-  function addTestProduct() {
-    const newProduct = {
-      id: Date.now(),
-      name: 'Test Ürünü',
-      brand: 'Test Marka',
-      category: 'Nemlendirici',
-      notes: '',
-    }
+  function addProduct(newProduct) {
     setProducts([...products, newProduct])
+  }
+
+  function deleteProduct(productId) {
+    setProducts(products.filter((product) => product.id !== productId))
   }
 
   return (
@@ -32,11 +28,14 @@ function App() {
 
       <main>
         {activeTab === 'today' && <TodayPage />}
-        {activeTab === 'products' && <ProductsPage />}
+        {activeTab === 'products' && (
+          <ProductsPage
+            products={products}
+            onAddProduct={addProduct}
+            onDeleteProduct={deleteProduct}
+          />
+        )}
         {activeTab === 'routines' && <RoutinesPage />}
-
-        <p>Kayıtlı ürün sayısı: {products.length}</p>
-        <button onClick={addTestProduct}>Test ürünü ekle</button>
       </main>
     </div>
   )
