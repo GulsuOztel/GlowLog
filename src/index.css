@@ -358,3 +358,118 @@ body {
   text-decoration: line-through;
   opacity: 0.6;
 }
+
+.journal-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin-top: 16px;
+}
+
+.journal-card h3 {
+  margin: 0 0 8px;
+}
+
+.journal-question {
+  margin: 0 0 12px;
+  opacity: 0.8;
+}
+
+.rating-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.rating-button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 4px;
+  border: 1px solid #e6d5d8;
+  border-radius: 12px;
+  background-color: var(--color-bg);
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+.rating-button.selected {
+  background-color: #fbe6ec;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.rating-emoji {
+  font-size: 1.5rem;
+}
+
+.rating-number {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.journal-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.journal-note {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e6d5d8;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: var(--color-bg);
+  resize: vertical;
+}
+
+.journal-note:focus {
+  outline: 2px solid var(--color-primary);
+  border-color: transparent;
+}
+
+.history {
+  margin-top: 32px;
+}
+
+.history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.history-item {
+  background-color: white;
+  padding: 14px 16px;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.history-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.history-rating {
+  font-size: 0.9rem;
+}
+
+.history-item small {
+  opacity: 0.6;
+}
+
+.history-note {
+  margin: 8px 0 0;
+  font-size: 0.95rem;
+}
