@@ -193,3 +193,27 @@ body {
   background-color: #fbdcd8;
   color: #c0392b;
 }
+
+.card-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.edit-button {
+  border: none;
+  background: none;
+  color: #9c4a63;
+  cursor: pointer;
+  padding: 0;
+}
+
+.secondary-button {
+  padding: 12px;
+  border: 1px solid #e6d5d8;
+  border-radius: 999px;
+  background-color: white;
+  color: var(--color-text);
+  font-size: 1rem;
+  cursor: pointer;
+}

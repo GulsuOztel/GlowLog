@@ -1,12 +1,46 @@
+import { useState } from 'react'
 import ProductForm from '../components/ProductForm'
 import ProductCard from '../components/ProductCard'
 
-function ProductsPage({ products, onAddProduct, onDeleteProduct }) {
+function ProductsPage({
+  products,
+  onAddProduct,
+  onUpdateProduct,
+  onDeleteProduct,
+}) {
+  const [editingProduct, setEditingProduct] = useState(null)
+
+  function handleSave(product) {
+    if (editingProduct) {
+      onUpdateProduct(product)
+      setEditingProduct(null)
+    } else {
+      onAddProduct(product)
+    }
+  }
+
+  function handleDelete(productId) {
+    onDeleteProduct(productId)
+    if (editingProduct && editingProduct.id === productId) {
+      setEditingProduct(null)
+    }
+  }
+
+  function handleEdit(product) {
+    setEditingProduct(product)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <section>
       <h2>Ürünlerim</h2>
 
-      <ProductForm onAddProduct={onAddProduct} />
+      <ProductForm
+        key={editingProduct ? editingProduct.id : 'new'}
+        editingProduct={editingProduct}
+        onSave={handleSave}
+        onCancelEdit={() => setEditingProduct(null)}
+      />
 
       {products.length === 0 ? (
         <p className="empty-state">
@@ -18,7 +52,8 @@ function ProductsPage({ products, onAddProduct, onDeleteProduct }) {
             <ProductCard
               key={product.id}
               product={product}
-              onDelete={onDeleteProduct}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
             />
           ))}
         </div>

@@ -13,7 +13,7 @@ function getExpiryStatus(expiryDate) {
   return { text: `${daysLeft} gün kaldı`, type: 'ok' }
 }
 
-function ProductCard({ product, onDelete }) {
+function ProductCard({ product, onEdit, onDelete }) {
   const expiryDate = getExpiryDate(product.openedDate, product.paoMonths)
   const status = expiryDate ? getExpiryStatus(expiryDate) : null
 
@@ -37,9 +37,14 @@ function ProductCard({ product, onDelete }) {
       )}
 
       {product.notes && <p className="product-notes">{product.notes}</p>}
-      <button className="delete-button" onClick={handleDeleteClick}>
-        Sil
-      </button>
+            <div className="card-actions">
+        <button className="edit-button" onClick={() => onEdit(product)}>
+          Düzenle
+        </button>
+        <button className="delete-button" onClick={handleDeleteClick}>
+          Sil
+        </button>
+      </div>
     </article>
   )
 }

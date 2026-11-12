@@ -13,6 +13,14 @@ function App() {
     setProducts([...products, newProduct])
   }
 
+  function updateProduct(updatedProduct) {
+    setProducts(
+      products.map((product) =>
+        product.id === updatedProduct.id ? updatedProduct : product
+      )
+    )
+  }
+
   function deleteProduct(productId) {
     setProducts(products.filter((product) => product.id !== productId))
   }
@@ -32,6 +40,7 @@ function App() {
           <ProductsPage
             products={products}
             onAddProduct={addProduct}
+            onUpdateProduct={updateProduct}
             onDeleteProduct={deleteProduct}
           />
         )}

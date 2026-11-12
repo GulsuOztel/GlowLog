@@ -22,8 +22,23 @@ const emptyForm = {
   notes: '',
 }
 
-function ProductForm({ onAddProduct }) {
-  const [formData, setFormData] = useState(emptyForm)
+function productToFormData(product) {
+  return {
+    name: product.name,
+    brand: product.brand || '',
+    category: product.category,
+    openedDate: product.openedDate || '',
+    paoMonths: product.paoMonths ? String(product.paoMonths) : '',
+    notes: product.notes || '',
+  }
+}
+
+function ProductForm({ editingProduct, onSave, onCancelEdit }) {
+  const isEditing = editingProduct !== null
+
+  const [formData, setFormData] = useState(
+    isEditing ? productToFormData(editingProduct) : emptyForm
+  )
   const [error, setError] = useState('')
 
   function handleChange(event) {
@@ -44,8 +59,8 @@ function ProductForm({ onAddProduct }) {
       return
     }
 
-    onAddProduct({
-      id: Date.now(),
+    onSave({
+      id: isEditing ? editingProduct.id : Date.now(),
       name: formData.name.trim(),
       brand: formData.brand.trim(),
       category: formData.category,
@@ -60,7 +75,7 @@ function ProductForm({ onAddProduct }) {
 
   return (
     <form className="product-form" onSubmit={handleSubmit}>
-      <h3>Yeni ürün ekle</h3>
+      <h3>{isEditing ? 'Ürünü düzenle' : 'Yeni ürün ekle'}</h3>
 
       <label htmlFor="name">Ürün adı *</label>
       <input
@@ -134,8 +149,14 @@ function ProductForm({ onAddProduct }) {
       {error && <p className="form-error">{error}</p>}
 
       <button type="submit" className="primary-button">
-        Ürünü ekle
+        {isEditing ? 'Güncelle' : 'Ürünü ekle'}
       </button>
+
+      {isEditing && (
+        <button type="button" className="secondary-button" onClick={onCancelEdit}>
+          Vazgeç
+        </button>
+      )}
     </form>
   )
 }
