@@ -1,4 +1,9 @@
-import { getTodayString, parseLocalDate } from '../utils/dateHelpers'
+import {
+  getTodayString,
+  parseLocalDate,
+  getExpiryDate,
+  getDaysLeft,
+} from '../utils/dateHelpers'
 
 const periods = [
   { id: 'morning', title: '🌅 Sabah Rutini' },
@@ -54,6 +59,14 @@ function TodayPage({ products, routines, logs, onLogsChange }) {
   })
 
   const hasAnyRoutine = routines.morning.length > 0 || routines.evening.length > 0
+    const expiringProducts = products
+    .map((product) => {
+      const expiryDate = getExpiryDate(product.openedDate, product.paoMonths)
+      if (!expiryDate) return null
+      return { product, daysLeft: getDaysLeft(expiryDate) }
+    })
+    .filter((item) => item !== null && item.daysLeft <= 30)
+    .sort((a, b) => a.daysLeft - b.daysLeft)
 
   const pastDates = Object.keys(logs)
     .filter((date) => date !== today)
@@ -68,6 +81,27 @@ function TodayPage({ products, routines, logs, onLogsChange }) {
     <section>
       <h2>Bugün</h2>
       <p className="today-date">{formattedToday}</p>
+            {expiringProducts.length > 0 && (
+        <div className="expiry-alert">
+          <h3>⚠️ Süresi yaklaşan ürünler</h3>
+          <ul>
+            {expiringProducts.map(({ product, daysLeft }) => (
+              <li key={product.id}>
+                <span>{product.name}</span>
+                <span
+                  className={`expiry-badge ${daysLeft < 0 ? 'expired' : 'soon'}`}
+                >
+                  {daysLeft < 0
+                    ? 'Süresi doldu'
+                    : daysLeft === 0
+                      ? 'Bugün doluyor'
+                      : `${daysLeft} gün kaldı`}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {!hasAnyRoutine ? (
         <p className="empty-state">

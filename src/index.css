@@ -761,3 +761,37 @@ h2 {
     gap: 6px;
   }
 }
+
+/* ===== İyileştirme 1: Süresi yaklaşan ürün uyarısı ===== */
+
+.expiry-alert {
+  background-color: #fff8ec;
+  border: 1px solid #f3dfb5;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
+
+.expiry-alert h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+
+.expiry-alert ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.expiry-alert li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-top: 1px solid #f3dfb5;
+}
+
+.expiry-alert li:first-child {
+  border-top: none;
+}
