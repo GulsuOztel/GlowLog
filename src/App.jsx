@@ -12,6 +12,7 @@ function App() {
     morning: [],
     evening: [],
   })
+  const [logs, setLogs] = useLocalStorage('glowlog_logs', {})
 
   function addProduct(newProduct) {
     setProducts([...products, newProduct])
@@ -43,7 +44,14 @@ function App() {
       <Navbar activeTab={activeTab} onTabChange={setActiveTab} />
 
       <main>
-        {activeTab === 'today' && <TodayPage />}
+        {activeTab === 'today' && (
+          <TodayPage
+            products={products}
+            routines={routines}
+            logs={logs}
+            onLogsChange={setLogs}
+          />
+        )}
         {activeTab === 'products' && (
           <ProductsPage
             products={products}
